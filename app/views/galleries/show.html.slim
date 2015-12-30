@@ -5,9 +5,10 @@ p
   = @gallery.title
 
 div
-  - @gallery.images.each do |image|
-    = image_tag(image.url)
-
+  - @gallery.images.each_with_index do |image, index|
+    div 
+      = image_tag(image.url)
+      = link_to "Delete", gallery_image_path(@gallery, index), :method => :delete, data: { confirm: "Are you sure you want to delete this image?" }
 
 = link_to 'Edit', edit_gallery_path(@gallery)
 '|
@@ -21,4 +22,3 @@ h1 Add more images
     = f.file_field :images, multiple: true
 
   .actions = f.submit "Add More Images"
-  
