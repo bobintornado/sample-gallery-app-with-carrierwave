@@ -9,4 +9,8 @@
   .field
     = f.label :title
     = f.text_field :title
+
+  .field
+    = f.file_field :images, multiple: true
+
   .actions = f.submit

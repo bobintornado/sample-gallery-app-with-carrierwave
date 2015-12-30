@@ -12,6 +12,9 @@ table
     - @galleries.each do |gallery|
       tr
         td = gallery.title
+        td
+          - gallery.images.each do |image|
+            = image_tag(image.url)
         td = link_to 'Show', gallery
         td = link_to 'Edit', edit_gallery_path(gallery)
         td = link_to 'Destroy', gallery, data: {:confirm => 'Are you sure?'}, :method => :delete
