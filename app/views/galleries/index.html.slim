@@ -1,0 +1,21 @@
+h1 Listing galleries
+
+table
+  thead
+    tr
+      th Title
+      th
+      th
+      th
+
+  tbody
+    - @galleries.each do |gallery|
+      tr
+        td = gallery.title
+        td = link_to 'Show', gallery
+        td = link_to 'Edit', edit_gallery_path(gallery)
+        td = link_to 'Destroy', gallery, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Gallery', new_gallery_path
