@@ -7,6 +7,12 @@ class ImagesController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    remove_image_at_index(params[:id].to_i)
+    flash[:error] = "Failed deleting image" unless @gallery.save
+    redirect_to :back
+  end
+
   private
 
   def set_gallery
@@ -17,6 +23,13 @@ class ImagesController < ApplicationController
     images = @gallery.images
     images += new_images
     @gallery.images = images
+  end
+
+  def remove_image_at_index(index)
+    remain_images = @gallery.images
+    deleted_image = remain_images.delete_at(index)
+    deleted_image.try(:remove!)
+    @gallery.images = remain_images
   end
 
   def images_params
