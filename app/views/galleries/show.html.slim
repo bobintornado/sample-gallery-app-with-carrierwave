@@ -8,6 +8,17 @@ div
   - @gallery.images.each do |image|
     = image_tag(image.url)
 
+
 = link_to 'Edit', edit_gallery_path(@gallery)
 '|
 = link_to 'Back', galleries_path
+
+
+h1 Add more images
+
+= form_for @gallery, url: gallery_images_path(@gallery), method: :post do |f|
+  .field
+    = f.file_field :images, multiple: true
+
+  .actions = f.submit "Add More Images"
+  
